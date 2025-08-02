@@ -23,7 +23,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         // Public: health
-                        .requestMatchers("/actuator/**").permitAll()
+                        .requestMatchers("/actuator/**","/ping").permitAll()
                         // All seat endpoints require JWT (secure everything)
                         .requestMatchers("/api/v1/seats/**").authenticated()
                         .anyRequest().permitAll()

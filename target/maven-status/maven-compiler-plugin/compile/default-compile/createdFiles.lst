@@ -2,6 +2,7 @@ com\example\seat_service\dto\BatchUpdateSeatRequestDTO.class
 com\example\seat_service\model\SeatStatus.class
 com\example\seat_service\SeatServiceApplication.class
 com\example\seat_service\service\SeatService.class
+com\example\seat_service\controller\HealthController.class
 com\example\seat_service\controller\SeatController.class
 com\example\seat_service\service\SeatInitScheduler.class
 com\example\seat_service\config\AppConfig.class
