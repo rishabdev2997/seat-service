@@ -13,7 +13,7 @@ import java.util.UUID;
 @Builder
 public class Seat {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(nullable = false)

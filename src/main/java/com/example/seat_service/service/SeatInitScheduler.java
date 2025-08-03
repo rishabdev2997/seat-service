@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Scheduler component to automate daily seat initialization for train runs.
+ * Scheduler component to automate seat initialization and cleanup for train runs.
  */
 @Slf4j
 @Component
@@ -35,13 +35,23 @@ public class SeatInitScheduler {
     private String trainServiceUrl;
 
     /**
-     * Scheduled task that runs every day at midnight to initialize seats for upcoming train runs.
+     * Scheduled task running every 2 minutes:
+     * 1. Deletes seats for expired trains (departureDate < today),
+     * 2. Initializes seats for upcoming train runs if missing.
      */
-    @Scheduled(cron = "0 */2 * * * *", zone = "Asia/Kolkata") // Runs every two min
+    @Scheduled(cron = "0 0 */2 * * *", zone = "Asia/Kolkata")
     public void automateSeatInitialization() {
         log.info("🚦 SeatInitScheduler running at {}", java.time.LocalDateTime.now());
 
         try {
+            LocalDate today = LocalDate.now();
+
+            // 1. Cleanup expired seat data before seeding
+            log.info("Starting cleanup of seats for expired trains before {}", today);
+            seatService.deleteSeatsByDepartureDateBefore(today);
+            log.info("Completed cleanup of expired seats.");
+
+            // 2. Fetch upcoming train runs from train service
             ResponseEntity<List<TrainRunDTO>> response = restTemplate.exchange(
                     trainServiceUrl,
                     HttpMethod.GET,
@@ -55,12 +65,12 @@ public class SeatInitScheduler {
                 return;
             }
 
+            // 3. Initialize seats for trains where seat data is missing
             for (TrainRunDTO run : trainRuns) {
                 UUID trainId = run.getId();
                 LocalDate departureDate = run.getDepartureDate();
                 int totalSeats = run.getTotalSeats();
 
-                // Check if seats already exist for this train run and date
                 boolean exist = seatService.seatsExist(trainId, departureDate);
                 if (!exist) {
                     seatService.initializeSeats(trainId, departureDate, totalSeats);

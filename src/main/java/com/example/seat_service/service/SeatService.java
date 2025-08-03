@@ -5,6 +5,7 @@ import com.example.seat_service.model.SeatStatus;
 import com.example.seat_service.repository.SeatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -54,7 +55,10 @@ public class SeatService {
         return seatRepository.save(seat);
     }
 
-
-
+    // *** Newly added method to delete seats for expired trains ***
+    @Transactional
+    public void deleteSeatsByDepartureDateBefore(LocalDate cutoffDate) {
+        seatRepository.deleteByDepartureDateBefore(cutoffDate);
+    }
 
 }
