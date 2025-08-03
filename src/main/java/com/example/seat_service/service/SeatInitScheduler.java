@@ -37,7 +37,7 @@ public class SeatInitScheduler {
     /**
      * Scheduled task that runs every day at midnight to initialize seats for upcoming train runs.
      */
-    @Scheduled(cron = "0 0 0 * * *") // Runs daily at midnight
+    @Scheduled(cron = "0 */2 * * * *", zone = "Asia/Kolkata") // Runs every two min
     public void automateSeatInitialization() {
         log.info("🚦 SeatInitScheduler running at {}", java.time.LocalDateTime.now());
 
