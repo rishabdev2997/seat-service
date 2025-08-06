@@ -39,7 +39,7 @@ public class SeatInitScheduler {
      * 1. Deletes seats for expired trains (departureDate < today),
      * 2. Initializes seats for upcoming train runs if missing.
      */
-    @Scheduled(cron = "0 */2 * * * *", zone = "Asia/Kolkata")
+    @Scheduled(cron = "0 */10 * * * *", zone = "Asia/Kolkata")
     public void automateSeatInitialization() {
         log.info("🚦 SeatInitScheduler running at {}", java.time.LocalDateTime.now());
 

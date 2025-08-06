@@ -4,6 +4,7 @@ E:\Rishab\Deploying\train-booking-system\seat-service\seat_service\src\main\java
 E:\Rishab\Deploying\train-booking-system\seat-service\seat_service\src\main\java\com\example\seat_service\dto\BatchUpdateSeatRequestDTO.java
 E:\Rishab\Deploying\train-booking-system\seat-service\seat_service\src\main\java\com\example\seat_service\dto\TrainRunDTO.java
 E:\Rishab\Deploying\train-booking-system\seat-service\seat_service\src\main\java\com\example\seat_service\dto\UpdateSeatRequestDTO.java
+E:\Rishab\Deploying\train-booking-system\seat-service\seat_service\src\main\java\com\example\seat_service\exception\GlobalExceptionHandler.java
 E:\Rishab\Deploying\train-booking-system\seat-service\seat_service\src\main\java\com\example\seat_service\model\Seat.java
 E:\Rishab\Deploying\train-booking-system\seat-service\seat_service\src\main\java\com\example\seat_service\model\SeatStatus.java
 E:\Rishab\Deploying\train-booking-system\seat-service\seat_service\src\main\java\com\example\seat_service\repository\SeatRepository.java

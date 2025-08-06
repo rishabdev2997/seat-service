@@ -6,6 +6,7 @@ com\example\seat_service\controller\HealthController.class
 com\example\seat_service\controller\SeatController.class
 com\example\seat_service\service\SeatInitScheduler.class
 com\example\seat_service\config\AppConfig.class
+com\example\seat_service\exception\GlobalExceptionHandler.class
 com\example\seat_service\repository\SeatRepository.class
 com\example\seat_service\security\SecurityConfig.class
 com\example\seat_service\dto\UpdateSeatRequestDTO.class
